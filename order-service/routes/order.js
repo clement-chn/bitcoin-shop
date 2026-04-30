@@ -59,3 +59,56 @@ router.post('/', async (req, res) => {
 });
 
 module.exports = router;
+
+/**
+ * @openapi
+ * /orders/health:
+ *   get:
+ *     summary: Health check
+ *     tags: [Order]
+ *     responses:
+ *       200:
+ *         description: Service en bonne santé
+ */
+
+/**
+ * @openapi
+ * /orders/{userId}:
+ *   get:
+ *     summary: Historique des ordres d'un utilisateur
+ *     tags: [Order]
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Liste des ordres
+ */
+
+/**
+ * @openapi
+ * /orders:
+ *   post:
+ *     summary: Créer un ordre d'achat de BTC
+ *     tags: [Order]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [userId, amountEur]
+ *             properties:
+ *               userId:
+ *                 type: string
+ *               amountEur:
+ *                 type: number
+ *     responses:
+ *       201:
+ *         description: Ordre créé
+ *       400:
+ *         description: Paramètres manquants
+ */

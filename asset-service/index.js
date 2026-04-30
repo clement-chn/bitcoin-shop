@@ -6,6 +6,11 @@ require('./db/database');
 const app = express();
 app.use(express.json());
 
+const swaggerUi = require('swagger-ui-express');
+const swaggerSpec = require('./swagger');
+
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
 const assetRoutes = require('./routes/asset');
 const { createTopics } = require('./kafka/client');
 app.use('/assets', assetRoutes);

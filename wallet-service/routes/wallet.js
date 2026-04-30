@@ -64,3 +64,87 @@ router.post('/:userId/refund', (req, res) => {
 });
 
 module.exports = router;
+
+/**
+ * @openapi
+ * /wallets/health:
+ *   get:
+ *     summary: Health check
+ *     tags: [Wallet]
+ *     responses:
+ *       200:
+ *         description: Service en bonne santé
+ */
+
+/**
+ * @openapi
+ * /wallets/{userId}:
+ *   get:
+ *     summary: Récupérer le solde EUR d'un utilisateur
+ *     tags: [Wallet]
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Solde récupéré
+ *       404:
+ *         description: Wallet non trouvé
+ */
+
+/**
+ * @openapi
+ * /wallets/{userId}/create:
+ *   post:
+ *     summary: Créer un wallet
+ *     tags: [Wallet]
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         required: true
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               balanceEur:
+ *                 type: number
+ *     responses:
+ *       201:
+ *         description: Wallet créé
+ */
+
+/**
+ * @openapi
+ * /wallets/{userId}/debit:
+ *   post:
+ *     summary: Débiter un wallet
+ *     tags: [Wallet]
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         required: true
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               amount:
+ *                 type: number
+ *               correlationId:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Débit effectué
+ *       400:
+ *         description: Solde insuffisant ou wallet non trouvé
+ */

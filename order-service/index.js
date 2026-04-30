@@ -7,6 +7,11 @@ require('./db/database');
 const app = express();
 app.use(express.json());
 
+const swaggerUi = require('swagger-ui-express');
+const swaggerSpec = require('./swagger');
+
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
 const orderRoutes = require('./routes/order');
 app.use('/orders', orderRoutes);
 

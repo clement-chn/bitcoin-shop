@@ -27,3 +27,44 @@ router.get('/:userId', (req, res) => {
 });
 
 module.exports = router;
+
+/**
+ * @openapi
+ * /assets/health:
+ *   get:
+ *     summary: Health check
+ *     tags: [Asset]
+ *     responses:
+ *       200:
+ *         description: Service en bonne santé
+ */
+
+/**
+ * @openapi
+ * /assets/stock:
+ *   get:
+ *     summary: Stock global de BTC disponible
+ *     tags: [Asset]
+ *     responses:
+ *       200:
+ *         description: Stock récupéré
+ */
+
+/**
+ * @openapi
+ * /assets/{userId}:
+ *   get:
+ *     summary: Portefeuille BTC d'un utilisateur
+ *     tags: [Asset]
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Portefeuille récupéré
+ *       404:
+ *         description: Portefeuille non trouvé
+ */
