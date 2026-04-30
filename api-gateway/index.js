@@ -1,10 +1,13 @@
 const express = require('express');
+const cors = require('cors');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const correlationIdMiddleware = require('./middleware/correlationId');
 
 const app = express();
-app.use(express.json());
+app.use(cors({ origin: 'http://localhost:5173' }));
 app.use(correlationIdMiddleware);
+
+// Pas de express.json() ici !
 
 app.use('/wallets', createProxyMiddleware({ 
   target: 'http://localhost:3001',
